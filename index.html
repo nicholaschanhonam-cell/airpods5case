@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gift #6 - AirPods 5 保護殼 🎉</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background: #0B0E14;
+      color: #F3F4F6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      padding: 20px 15px;
+      position: relative;
+    }
+
+    /* 浪漫星空背景 */
+    .stars-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 50% 20%, rgba(236, 72, 153, 0.15), transparent 70%),
+        radial-gradient(circle at 20% 80%, rgba(217, 119, 6, 0.12), transparent 60%);
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle linear infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.8); }
+      50% { opacity: 0.9; transform: scale(1.2); }
+    }
+
+    /* 主容器 */
+    .main-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 頂部標題區 */
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .top-badge {
+      display: inline-block;
+      border: 1px solid #EC4899;
+      background: rgba(236, 72, 153, 0.1);
+      color: #F472B6;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
+    .main-title {
+      font-family: 'Georgia', serif;
+      font-size: 34px;
+      background: linear-gradient(135deg, #FFF, #F472B6, #EC4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+
+    .greeting {
+      font-size: 17px;
+      color: #FFFFFF;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .notice-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(236, 72, 153, 0.3);
+      border-radius: 20px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #D1D5DB;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* 卡片區 */
+    .card-container {
+      width: 100%;
+      background: linear-gradient(180deg, #1F2937, #111827);
+      border-radius: 28px;
+      padding: 28px 20px;
+      border: 1.5px solid rgba(236, 72, 153, 0.35);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      text-align: center;
+    }
+
+    .gift-badge {
+      display: inline-block;
+      background: linear-gradient(90deg, #EC4899, #DB2777);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 12px;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #9CA3AF;
+      margin-bottom: 20px;
+    }
+
+    /* 禮物盒容器 */
+    .gift-box-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 24px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .gift-box {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #EC4899, #DB2777);
+      border-radius: 24px;
+      position: relative;
+      box-shadow: 0 15px 30px rgba(236, 72, 153, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 60px;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .gift-box:hover {
+      transform: scale(1.05);
+    }
+
+    /* 揭曉內容 */
+    .reveal-content {
+      display: none;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: #F472B6;
+      margin-bottom: 10px;
+    }
+
+    .reveal-desc {
+      font-size: 14px;
+      color: #E5E7EB;
+      line-height: 1.6;
+    }
+
+    .action-btn {
+      margin-top: 16px;
+      background: linear-gradient(90deg, #EC4899, #DB2777);
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 24px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+      transition: transform 0.2s;
+    }
+
+    .action-btn:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars-bg" id="starsBg"></div>
+
+  <div class="main-container">
+    <div class="header">
+      <div class="top-badge">✨ OCTOBER SPECIAL SURPRISE ✨</div>
+      <div class="main-title">Happy 27th Birthday</div>
+      <div class="greeting">親愛的 Tiffany（曾樂澄）💖</div>
+      <div class="notice-box">
+        💡 因為尺寸關係冇辦法放入扭蛋機內，所以特別為妳另外呈獻這份禮物！
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="gift-badge">GIFT #6 SURPRISE</div>
+      <div class="subtitle" id="subtitle">點擊禮物盒拆開特別驚喜 🎁</div>
+
+      <div class="gift-box-wrapper" id="giftBoxWrapper" onclick="openGift()">
+        <div class="gift-box" id="giftBox">🎁</div>
+      </div>
+
+      <div class="reveal-content" id="revealContent">
+        <div class="reveal-title">🎉 恭喜獲得 AirPods 5 保護殼！</div>
+        <div class="reveal-desc">有了耳機當然要有美美的保護殼～好好守護妳的新禮物 💖✨</div>
+      </div>
+
+      <button class="action-btn" id="btn" onclick="openGift()">打開禮物盒 🎁</button>
+    </div>
+  </div>
+
+  <script>
+    const starsBg = document.getElementById('starsBg');
+    for (let i = 0; i < 35; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.width = `${Math.random() * 3 + 1}px`;
+      star.style.height = star.style.width;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      starsBg.appendChild(star);
+    }
+
+    let isOpened = false;
+
+    function openGift() {
+      if (isOpened) return;
+      isOpened = true;
+
+      const giftBoxWrapper = document.getElementById('giftBoxWrapper');
+      const revealContent = document.getElementById('revealContent');
+      const btn = document.getElementById('btn');
+      const subtitle = document.getElementById('subtitle');
+
+      // 隱藏禮物盒圖案與按鈕，只留純文字
+      giftBoxWrapper.style.display = 'none';
+      btn.style.display = 'none';
+      subtitle.style.display = 'none';
+
+      revealContent.style.display = 'block';
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+    }
+  </script>
+</body>
+</html>
